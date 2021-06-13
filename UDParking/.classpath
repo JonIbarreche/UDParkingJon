@@ -23,5 +23,15 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/jonib/.m2/repository/org/datanucleus/javax.jdo/3.2.0-m13/javax.jdo-3.2.0-m13.jar" sourcepath="C:/Users/jonib/.m2/repository/org/datanucleus/javax.jdo/3.2.0-m13/javax.jdo-3.2.0-m13-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/jonib/.m2/repository/org/datanucleus/javax.jdo/3.2.0-m13/javax.jdo-3.2.0-m13-javadoc.jar!/"/>
+			<attribute name="maven.groupId" value="org.datanucleus"/>
+			<attribute name="maven.artifactId" value="javax.jdo"/>
+			<attribute name="maven.version" value="3.2.0-m13"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
