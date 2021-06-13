@@ -19,11 +19,17 @@ public class Vehiculo {
 
 	protected long price = 0;
 
-	public Vehiculo(long id, String name, String description, long price) {
+	public Vehiculo(String name, String description, long price) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.price = price;
+	}
+
+	public Vehiculo(String name2, String description2, int price2) {
+		this.name = name2;
+		this.description = description2;
+		this.price = price2;
 	}
 
 	public long getId() {
