@@ -30,7 +30,10 @@ public class PreparedData {
 	public static Parking p3 = new Parking("Lezama");
 	public static Parking p4 = new Parking("Deusto");
 
-	
+	/**
+	 * Metodo para crear Vehiculos en la BD
+	 *
+	 */
 	public static void crearVehiculo() {
 	
 		pm.makePersistent(vehiculoA);
@@ -42,12 +45,20 @@ public class PreparedData {
 		pm.makePersistent(vehiculoG);
 		
 	}
+	/**
+	 * Metodo para crear Parkings en la BD
+	 *
+	 */
 	public static void crearParking() {
 		pm.makePersistent(p1);
 		pm.makePersistent(p2);
 		pm.makePersistent(p3);
 		pm.makePersistent(p4);
 	}
+	/**
+	 * Metodo para iniciar PreparedData
+	 *
+	 */
 	public static void main(String[] args) {
 
 		try {

@@ -1,3 +1,6 @@
+/** \file 
+ * Breve descripción de es.deusto.spq.jdo Parking.java. Jun 14, 2021
+ */
 package es.deusto.spq.jdo;
 
 
@@ -6,7 +9,10 @@ import java.util.Set;
 
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
-
+/**
+ * Clase Parking
+ *
+ */
 @PersistenceCapable
 public class Parking {
 	@PrimaryKey
@@ -17,15 +23,21 @@ public class Parking {
 		
 		this.name = name;
 	}
-
+	/**
+	 * Obtener el nombre del parking
+	 *
+	 */
 	public String getName() {
 		return name;
 	}
-
+	/**
+	 * Asignar el nombre del parking
+	 *
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	
 	public Set<Vehiculo> getVehiculos() {
 		return vehiculos;
 	}
@@ -33,7 +45,10 @@ public class Parking {
 	public void setVehiculos(Set<Vehiculo> vehiculos) {
 		this.vehiculos = vehiculos;
 	}
-
+	/**
+	 * Obtener el toString del parking
+	 *
+	 */
 	@Override
 	public String toString() {
 		return "Parking [name=" + name + ", vehiculos=" + vehiculos + "]";

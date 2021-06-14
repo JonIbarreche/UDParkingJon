@@ -1,3 +1,6 @@
+/** \file 
+ * Breve descripción de es.deusto.spq.gui MainWindow.java. Jun 14, 2021
+ */
 package es.deusto.spq.gui;
 
 import java.awt.BorderLayout;
@@ -45,7 +48,10 @@ import jakarta.ws.rs.client.WebTarget;
 import jakarta.ws.rs.core.GenericType;
 import jakarta.ws.rs.core.MediaType;
 
-
+/**
+ * Clase Ventana Principal
+ *
+ */
 public class MainWindow extends JFrame {
 
 	private JPanel contentPane;
@@ -308,6 +314,9 @@ public class MainWindow extends JFrame {
 			}
 		}
 	}
+	/**
+	 * Elimina vehiculo a la BD
+	 */
 	public void eliminarVehiculoBd(ListModel<Vehiculo> listModel, String selectedVehiculo) {
 		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory("datanucleus.properties");
 		PersistenceManager pm = pmf.getPersistenceManager();
@@ -329,7 +338,9 @@ public class MainWindow extends JFrame {
 			dispose();
 		}
 	}
-	
+	/**
+	 * Metodo para determinar un maximo a la descripcion
+	 */
 	public void maxLengthdesc(JTextArea txtDescription, KeyEvent e) {
 
 		int max = 255;
