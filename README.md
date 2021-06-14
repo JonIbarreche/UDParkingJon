@@ -1,7 +1,7 @@
 # UDParkingJon
 UDParking
 
-Crear una base de datos llamada cine y dar permisos al usuario por defecto
+Crear una base de datos llamada parking y dar permisos al usuario por defecto
 
     CREATE DATABASE parking;
     CREATE USER IF NOT EXISTS 'spq'@'localhost' IDENTIFIED BY 'spq';
