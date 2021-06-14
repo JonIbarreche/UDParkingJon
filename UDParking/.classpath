@@ -33,5 +33,15 @@
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/jonib/.m2/repository/jakarta/ws/rs/jakarta.ws.rs-api/3.0.0/jakarta.ws.rs-api-3.0.0.jar" sourcepath="C:/Users/jonib/.m2/repository/jakarta/ws/rs/jakarta.ws.rs-api/3.0.0/jakarta.ws.rs-api-3.0.0-sources.jar">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+			<attribute name="javadoc_location" value="jar:file:/C:/Users/jonib/.m2/repository/jakarta/ws/rs/jakarta.ws.rs-api/3.0.0/jakarta.ws.rs-api-3.0.0-javadoc.jar!/"/>
+			<attribute name="maven.groupId" value="jakarta.ws.rs"/>
+			<attribute name="maven.artifactId" value="jakarta.ws.rs-api"/>
+			<attribute name="maven.version" value="3.0.0"/>
+			<attribute name="maven.scope" value="compile"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
