@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: es.deusto.spq.gui.MainWindowTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 7.301 s <<< FAILURE! - in es.deusto.spq.gui.MainWindowTest
+es.deusto.spq.gui.MainWindowTest.añadirPeliculaBD  Time elapsed: 7.301 s  <<< ERROR!
+jakarta.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+	at es.deusto.spq.gui.MainWindowTest.setUp(MainWindowTest.java:72)
+

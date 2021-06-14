@@ -1,0 +1,29 @@
+-------------------------------------------------------------------------------
+Test set: es.deusto.spq.util.PreparedDataTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 0.015 s <<< FAILURE! - in es.deusto.spq.util.PreparedDataTest
+es.deusto.spq.util.PreparedDataTest.crearParkingTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.ExceptionInInitializerError
+	at es.deusto.spq.util.PreparedDataTest.setUp(PreparedDataTest.java:30)
+Caused by: javax.jdo.JDOFatalDataStoreException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at es.deusto.spq.util.PreparedDataTest.setUp(PreparedDataTest.java:30)
+Caused by: com.mysql.cj.jdbc.exceptions.CommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at es.deusto.spq.util.PreparedDataTest.setUp(PreparedDataTest.java:30)
+Caused by: com.mysql.cj.exceptions.CJCommunicationsException: 
+Communications link failure
+
+The last packet sent successfully to the server was 0 milliseconds ago. The driver has not received any packets from the server.
+	at es.deusto.spq.util.PreparedDataTest.setUp(PreparedDataTest.java:30)
+Caused by: java.net.ConnectException: Connection refused: connect
+	at es.deusto.spq.util.PreparedDataTest.setUp(PreparedDataTest.java:30)
+
+es.deusto.spq.util.PreparedDataTest.crearVehiculoTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: Could not initialize class es.deusto.spq.util.PreparedData
+	at es.deusto.spq.util.PreparedDataTest.setUp(PreparedDataTest.java:30)
+

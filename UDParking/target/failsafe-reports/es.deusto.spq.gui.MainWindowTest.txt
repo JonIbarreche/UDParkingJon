@@ -1,0 +1,14 @@
+-------------------------------------------------------------------------------
+Test set: es.deusto.spq.gui.MainWindowTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 2, Skipped: 0, Time elapsed: 1.296 s <<< FAILURE! - in es.deusto.spq.gui.MainWindowTest
+añadirPeliculaBD(es.deusto.spq.gui.MainWindowTest)  Time elapsed: 1.296 s  <<< ERROR!
+jakarta.ws.rs.ProcessingException: Failed to start Grizzly HTTP server: Address already in use: bind
+	at es.deusto.spq.gui.MainWindowTest.setUp(MainWindowTest.java:65)
+Caused by: java.net.BindException: Address already in use: bind
+	at es.deusto.spq.gui.MainWindowTest.setUp(MainWindowTest.java:65)
+
+añadirPeliculaBD(es.deusto.spq.gui.MainWindowTest)  Time elapsed: 1.296 s  <<< ERROR!
+java.lang.NullPointerException
+	at es.deusto.spq.gui.MainWindowTest.tearDown(MainWindowTest.java:90)
+

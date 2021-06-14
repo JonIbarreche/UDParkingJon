@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>VehiculoResource.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UDParking</a> &gt; <a href="index.source.html" class="el_package">es.deusto.spq.resources</a> &gt; <span class="el_source">VehiculoResource.java</span></div><h1>VehiculoResource.java</h1><pre class="source lang-java linenums">package es.deusto.spq.resources;
+
+
+import java.util.List;
+
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
+
+import es.deusto.spq.jdo.Vehiculo;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
+
+/**
+ * Clase para obtener datos de los vehiculos de la base de datos
+ */
+@Path(&quot;vehiculos&quot;)
+<span class="nc" id="L21">public class VehiculoResource {</span>
+	/**
+	 * Metodo para obtener toda la lista de los vehiculos de la base de datos
+	 */
+	@GET
+	@Produces(MediaType.APPLICATION_JSON)
+	public List&lt;Vehiculo&gt; getProducts() {
+<span class="nc" id="L28">		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory(&quot;datanucleus.properties&quot;);</span>
+<span class="nc" id="L29">		PersistenceManager pm = pmf.getPersistenceManager();</span>
+
+<span class="nc" id="L31">		Query&lt;Vehiculo&gt; q = pm.newQuery(Vehiculo.class);</span>
+<span class="nc" id="L32">		q.setOrdering(&quot;name desc&quot;);</span>
+
+<span class="nc" id="L34">		List&lt;Vehiculo&gt; vehiculos = q.executeList();</span>
+
+<span class="nc" id="L36">		pm.close();</span>
+
+<span class="nc" id="L38">		return vehiculos;</span>
+	}
+	
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

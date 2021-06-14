@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: es.deusto.spq.resources.VehiculoResourceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 183.523 s <<< FAILURE! - in es.deusto.spq.resources.VehiculoResourceTest
+es.deusto.spq.resources.VehiculoResourceTest.testgetFilms  Time elapsed: 183.523 s  <<< ERROR!
+org.databene.contiperf.PerfTestExecutionError: jakarta.ws.rs.InternalServerErrorException: HTTP 500 Request failed.
+	at es.deusto.spq.resources.VehiculoResourceTest.testgetFilms(VehiculoResourceTest.java:83)
+

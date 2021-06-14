@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>MainWindow.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UDParking</a> &gt; <a href="index.source.html" class="el_package">es.deusto.spq.gui</a> &gt; <span class="el_source">MainWindow.java</span></div><h1>MainWindow.java</h1><pre class="source lang-java linenums">package es.deusto.spq.gui;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import javax.jdo.JDOHelper;
+import javax.jdo.PersistenceManager;
+import javax.jdo.PersistenceManagerFactory;
+import javax.jdo.Query;
+import javax.jdo.Transaction;
+import javax.swing.DefaultListModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.ListModel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.LineBorder;
+
+import es.deusto.spq.jdo.Parking;
+import es.deusto.spq.jdo.Vehiculo;
+import jakarta.ws.rs.client.Client;
+import jakarta.ws.rs.client.ClientBuilder;
+import jakarta.ws.rs.client.WebTarget;
+import jakarta.ws.rs.core.GenericType;
+import jakarta.ws.rs.core.MediaType;
+
+
+public class MainWindow extends JFrame {
+
+	private JPanel contentPane;
+	private static final long serialVersionUID = 6673510127789501132L;
+	
+<span class="nc" id="L54">	Client client = ClientBuilder.newClient();</span>
+<span class="nc" id="L55">	final WebTarget appTarget = client.target(&quot;http://localhost:8080/myapp&quot;);</span>
+<span class="nc" id="L56">	final WebTarget VehiculosTarget = appTarget.path(&quot;vehiculos&quot;);</span>
+
+	private JList&lt;Vehiculo&gt; vehiculos;
+<span class="nc" id="L59">	private JLabel lblMessage = new JLabel(&quot;&quot;);</span>
+
+
+<span class="nc" id="L62">	public final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);</span>
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+<span class="nc" id="L68">		EventQueue.invokeLater(new Runnable() {</span>
+			public void run() {
+				try {
+<span class="nc" id="L71">					MainWindow frame = new MainWindow();</span>
+<span class="nc" id="L72">					frame.setVisible(true);</span>
+<span class="nc" id="L73">				} catch (Exception e) {</span>
+<span class="nc" id="L74">					logger.log(Level.WARNING, &quot;ERROR&quot;, e);</span>
+<span class="nc" id="L75">				}</span>
+<span class="nc" id="L76">			}</span>
+		});
+<span class="nc" id="L78">	}</span>
+
+	/**
+	 * Create the frame.
+	 */
+<span class="nc" id="L83">	public MainWindow() {</span>
+<span class="nc" id="L84">		setUndecorated(true);</span>
+<span class="nc" id="L85">		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span>
+<span class="nc" id="L86">		setBounds(100, 100, 750, 501);</span>
+<span class="nc" id="L87">		contentPane = new JPanel();</span>
+<span class="nc" id="L88">		contentPane.setBackground(new Color(0, 102, 153));</span>
+<span class="nc" id="L89">		contentPane.setBorder(new LineBorder(new Color(0, 0, 139), 2));</span>
+<span class="nc" id="L90">		setContentPane(contentPane);</span>
+<span class="nc" id="L91">		contentPane.setLayout(null);</span>
+		
+<span class="nc" id="L93">		final DefaultListModel&lt;Vehiculo&gt; ListaVehiculos = new DefaultListModel&lt;&gt;();</span>
+		
+<span class="nc" id="L95">		GenericType&lt;List&lt;Vehiculo&gt;&gt; genericType = new GenericType&lt;List&lt;Vehiculo&gt;&gt;() {</span>
+		};
+<span class="nc" id="L97">		List&lt;Vehiculo&gt; vehiculos2 = VehiculosTarget.request(MediaType.APPLICATION_JSON).get(genericType);</span>
+
+<span class="nc" id="L99">		ListaVehiculos.clear();</span>
+<span class="nc bnc" id="L100" title="All 2 branches missed.">		for (Vehiculo vehiculos1 : vehiculos2) {</span>
+
+<span class="nc" id="L102">			ListaVehiculos.addElement(vehiculos1);</span>
+<span class="nc" id="L103">		}</span>
+
+<span class="nc" id="L105">		vehiculos = new JList&lt;Vehiculo&gt;(ListaVehiculos);</span>
+<span class="nc" id="L106">		vehiculos.setBounds(50, 86, 333, 314);</span>
+<span class="nc" id="L107">		vehiculos.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L108">		contentPane.add(vehiculos);</span>
+		
+<span class="nc" id="L110">		final JLabel lblX = new JLabel(&quot;X&quot;);</span>
+<span class="nc" id="L111">		lblX.setBounds(707, 10, 19, 31);</span>
+<span class="nc" id="L112">		lblX.addMouseListener(new MouseAdapter() {</span>
+			@Override
+			public void mouseClicked(MouseEvent e) {
+<span class="nc bnc" id="L115" title="All 2 branches missed.">				if (JOptionPane.showConfirmDialog(null, &quot;¿Seguro que quieres cerrar la aplicacion?&quot;, &quot;Confirmacion&quot;,</span>
+						JOptionPane.YES_NO_OPTION) == 0) {
+<span class="nc" id="L117">					dispose();</span>
+				}
+<span class="nc" id="L119">			}</span>
+
+			@Override
+			public void mouseEntered(MouseEvent e) {
+<span class="nc" id="L123">				lblX.setForeground(Color.RED);</span>
+<span class="nc" id="L124">			}</span>
+
+			@Override
+			public void mouseExited(MouseEvent e) {
+<span class="nc" id="L128">				lblX.setForeground(Color.WHITE);</span>
+<span class="nc" id="L129">			}</span>
+		});
+<span class="nc" id="L131">		lblX.setHorizontalAlignment(SwingConstants.CENTER);</span>
+<span class="nc" id="L132">		lblX.setHorizontalTextPosition(SwingConstants.CENTER);</span>
+<span class="nc" id="L133">		lblX.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L134">		lblX.setForeground(new Color(255, 255, 255));</span>
+<span class="nc" id="L135">		contentPane.add(lblX);</span>
+		
+<span class="nc" id="L137">		final JTextField txtName = new JTextField();</span>
+<span class="nc" id="L138">		txtName.addFocusListener(new FocusAdapter() {</span>
+			@Override
+			public void focusGained(FocusEvent e) {
+<span class="nc bnc" id="L141" title="All 2 branches missed.">				if (txtName.getText().equals(&quot;Nombre&quot;)) {</span>
+<span class="nc" id="L142">					txtName.setText(&quot;&quot;);</span>
+				} else {
+<span class="nc" id="L144">					txtName.selectAll();</span>
+				}
+<span class="nc" id="L146">			}</span>
+
+			@Override
+			public void focusLost(FocusEvent e) {
+<span class="nc bnc" id="L150" title="All 2 branches missed.">				if (txtName.getText().equals(&quot;&quot;))</span>
+<span class="nc" id="L151">					txtName.setText(&quot;Nombre&quot;);</span>
+<span class="nc" id="L152">			}</span>
+		});
+<span class="nc" id="L154">		txtName.setBorder(null);</span>
+<span class="nc" id="L155">		txtName.setFont(new Font(&quot;Arial&quot;, Font.BOLD, 14));</span>
+<span class="nc" id="L156">		txtName.setText(&quot;Nombre&quot;);</span>
+<span class="nc" id="L157">		txtName.setBounds(500, 50, 170, 20);</span>
+<span class="nc" id="L158">		txtName.setColumns(10);</span>
+<span class="nc" id="L159">		contentPane.add(txtName);</span>
+
+<span class="nc" id="L161">		JScrollPane areaScrollPane = new JScrollPane();</span>
+<span class="nc" id="L162">		areaScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);</span>
+<span class="nc" id="L163">		areaScrollPane.setBounds(500, 86, 170, 190);</span>
+<span class="nc" id="L164">		contentPane.add(areaScrollPane);</span>
+		
+		
+<span class="nc" id="L167">		final JTextArea txtDescription = new JTextArea();</span>
+<span class="nc" id="L168">		areaScrollPane.setViewportView(txtDescription);</span>
+<span class="nc" id="L169">		txtDescription.addKeyListener(new KeyListener() {</span>
+
+			@Override
+			public void keyTyped(KeyEvent e) {
+<span class="nc" id="L173">				maxLengthdesc(txtDescription, e);</span>
+<span class="nc" id="L174">			}</span>
+
+			@Override
+			public void keyPressed(KeyEvent e) {
+
+<span class="nc" id="L179">			}</span>
+
+			@Override
+			public void keyReleased(KeyEvent e) {
+
+<span class="nc" id="L184">			}</span>
+		});
+		
+<span class="nc" id="L187">				txtDescription.addFocusListener(new FocusAdapter() {</span>
+					@Override
+					public void focusGained(FocusEvent e) {
+<span class="nc bnc" id="L190" title="All 2 branches missed.">						if (txtDescription.getText().equals(&quot;Descripción (max 255)&quot;)) {</span>
+<span class="nc" id="L191">							txtDescription.setText(&quot;&quot;);</span>
+						} else {
+<span class="nc" id="L193">							txtDescription.selectAll();</span>
+						}
+<span class="nc" id="L195">					}</span>
+		
+					@Override
+					public void focusLost(FocusEvent e) {
+<span class="nc bnc" id="L199" title="All 2 branches missed.">						if (txtDescription.getText().equals(&quot;&quot;))</span>
+<span class="nc" id="L200">							txtDescription.setText(&quot;Descripción (max 255)&quot;);</span>
+<span class="nc" id="L201">					}</span>
+				});
+<span class="nc" id="L203">				txtDescription.setLineWrap(true);</span>
+<span class="nc" id="L204">				txtDescription.setWrapStyleWord(true);</span>
+<span class="nc" id="L205">				txtDescription.setBorder(null);</span>
+<span class="nc" id="L206">				txtDescription.setFont(new Font(&quot;Arial&quot;, Font.BOLD, 14));</span>
+<span class="nc" id="L207">				txtDescription.setText(&quot;Descripción (max 255)&quot;);</span>
+<span class="nc" id="L208">				txtDescription.setColumns(10);</span>
+				
+<span class="nc" id="L210">				final JTextField txtPrecio = new JTextField();</span>
+<span class="nc" id="L211">				txtPrecio.addFocusListener(new FocusAdapter() {</span>
+					@Override
+					public void focusGained(FocusEvent e) {
+<span class="nc bnc" id="L214" title="All 2 branches missed.">						if (txtPrecio.getText().equals(&quot;Precio&quot;)) {</span>
+<span class="nc" id="L215">							txtPrecio.setText(&quot;&quot;);</span>
+						} else {
+<span class="nc" id="L217">							txtPrecio.selectAll();</span>
+						}
+<span class="nc" id="L219">					}</span>
+
+					@Override
+					public void focusLost(FocusEvent e) {
+<span class="nc bnc" id="L223" title="All 2 branches missed.">						if (txtPrecio.getText().equals(&quot;&quot;))</span>
+<span class="nc" id="L224">							txtPrecio.setText(&quot;Director&quot;);</span>
+<span class="nc" id="L225">					}</span>
+				});
+<span class="nc" id="L227">				txtPrecio.setBorder(null);</span>
+<span class="nc" id="L228">				txtPrecio.setFont(new Font(&quot;Arial&quot;, Font.BOLD, 14));</span>
+<span class="nc" id="L229">				txtPrecio.setText(&quot;Precio&quot;);</span>
+<span class="nc" id="L230">				txtPrecio.setBounds(500, 301, 170, 20);</span>
+<span class="nc" id="L231">				txtPrecio.setColumns(10);</span>
+<span class="nc" id="L232">				contentPane.add(txtPrecio);				</span>
+
+<span class="nc" id="L234">				JButton btnAdd = new JButton(&quot;Añadir&quot;);</span>
+<span class="nc" id="L235">				btnAdd.addActionListener(new ActionListener() {</span>
+					public void actionPerformed(ActionEvent arg0) {
+						//anadirVehiculoBd(vehiculos.getModel(), vehiculos.getSelectedValue().getName());
+<span class="nc" id="L238">						eliminarVehiculoBd(vehiculos.getModel(), vehiculos.getSelectedValue().getName());</span>
+<span class="nc" id="L239">					}</span>
+				});
+
+<span class="nc" id="L242">				btnAdd.setBounds(480, 430, 200, 30);</span>
+<span class="nc" id="L243">				btnAdd.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L244">				contentPane.add(btnAdd);				</span>
+				
+<span class="nc" id="L246">		JButton btnDelete = new JButton(&quot;Eliminar&quot;);</span>
+<span class="nc" id="L247">		btnDelete.addActionListener(new ActionListener() {</span>
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+<span class="nc" id="L251">				eliminarVehiculoBd(vehiculos.getModel(), vehiculos.getSelectedValue().getName());</span>
+<span class="nc" id="L252">			}</span>
+		});
+<span class="nc" id="L254">		btnDelete.setBounds(115, 430, 200, 30);</span>
+<span class="nc" id="L255">		btnDelete.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 20));</span>
+<span class="nc" id="L256">		contentPane.add(btnDelete);</span>
+		
+<span class="nc" id="L258">		JLabel lblParking = new JLabel(&quot;PARKING&quot;);</span>
+<span class="nc" id="L259">		lblParking.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 36));</span>
+<span class="nc" id="L260">		lblParking.setBounds(126, 16, 229, 68);</span>
+<span class="nc" id="L261">		contentPane.add(lblParking);</span>
+		
+<span class="nc" id="L263">		JLabel lblVehiculo = new JLabel(&quot;VEHICULO&quot;);</span>
+<span class="nc" id="L264">		lblVehiculo.setFont(new Font(&quot;Tahoma&quot;, Font.BOLD, 23));</span>
+<span class="nc" id="L265">		lblVehiculo.setBounds(500, 10, 170, 31);</span>
+<span class="nc" id="L266">		contentPane.add(lblVehiculo);</span>
+		
+<span class="nc" id="L268">	}</span>
+	
+	/**
+	 * Añade vehiculo a la BD
+	 */
+	public void anadirVehiculoBd(JTextField txtName, JTextField txtPrecio,
+			JTextArea txtDescription) {
+<span class="nc bnc" id="L275" title="All 6 branches missed.">		if (txtName.getText().equals(&quot;&quot;) || txtName.getText().equals(&quot;Nombre&quot;) || txtPrecio.getText().equals(&quot;&quot;)</span>
+<span class="nc bnc" id="L276" title="All 4 branches missed.">				|| txtPrecio.getText().equals(&quot;Precio&quot;) || txtDescription.getText().equals(&quot;&quot;)</span>
+<span class="nc bnc" id="L277" title="All 2 branches missed.">				|| txtDescription.getText().equals(&quot;Descripción (max 255)&quot;)) {</span>
+
+<span class="nc" id="L279">			lblMessage.setText(&quot;Por favor rellena los campos!&quot;);</span>
+
+		} else {
+<span class="nc" id="L282">			PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory(&quot;datanucleus.properties&quot;);</span>
+
+<span class="nc" id="L284">			PersistenceManager pm = pmf.getPersistenceManager();</span>
+<span class="nc" id="L285">			Transaction tx = pm.currentTransaction();</span>
+<span class="nc" id="L286">			int precio = Integer.parseInt(txtPrecio.toString());</span>
+<span class="nc" id="L287">			System.out.println(&quot;Añadiendo película en la BD&quot;);</span>
+
+			try {
+<span class="nc" id="L290">				tx.begin();</span>
+<span class="nc" id="L291">				Vehiculo vehiculo = new Vehiculo(txtName.getText().toString(),</span>
+<span class="nc" id="L292">						txtDescription.getText().toString(), precio);</span>
+<span class="nc" id="L293">				pm.makePersistent(vehiculo);</span>
+
+<span class="nc" id="L295">				tx.commit();</span>
+<span class="nc" id="L296">				System.out.println(&quot;Añadido una nueva película a la Base de Datos&quot;);</span>
+
+			} finally {
+<span class="nc bnc" id="L299" title="All 2 branches missed.">				if (tx.isActive()) {</span>
+<span class="nc" id="L300">					tx.rollback();</span>
+				}
+<span class="nc" id="L302">				pm.close();</span>
+
+<span class="nc" id="L304">				MainWindow afw = new MainWindow();</span>
+<span class="nc" id="L305">				afw.setVisible(true);</span>
+<span class="nc" id="L306">				dispose();</span>
+
+			}
+		}
+<span class="nc" id="L310">	}</span>
+	public void eliminarVehiculoBd(ListModel&lt;Vehiculo&gt; listModel, String selectedVehiculo) {
+<span class="nc" id="L312">		PersistenceManagerFactory pmf = JDOHelper.getPersistenceManagerFactory(&quot;datanucleus.properties&quot;);</span>
+<span class="nc" id="L313">		PersistenceManager pm = pmf.getPersistenceManager();</span>
+<span class="nc" id="L314">		System.out.println(&quot;Eliminando película de la BD&quot;);</span>
+
+		try {
+
+<span class="nc" id="L318">			Query&lt;Vehiculo&gt; q = pm.newQuery(&quot;SELECT FROM &quot; + Vehiculo.class.getName() + &quot; WHERE name== '&quot; + selectedVehiculo + &quot;'&quot;);</span>
+<span class="nc" id="L319">			List&lt;Vehiculo&gt; vehiculoList = q.executeList();</span>
+<span class="nc" id="L320">			q.deletePersistentAll(vehiculoList);</span>
+
+<span class="nc" id="L322">			System.out.println(&quot;Eliminada película de la Base de Datos&quot;);</span>
+
+		} finally {
+<span class="nc" id="L325">			pm.close();</span>
+
+<span class="nc" id="L327">			MainWindow afw = new MainWindow();</span>
+<span class="nc" id="L328">			afw.setVisible(true);</span>
+<span class="nc" id="L329">			dispose();</span>
+		}
+<span class="nc" id="L331">	}</span>
+	
+	public void maxLengthdesc(JTextArea txtDescription, KeyEvent e) {
+
+<span class="nc" id="L335">		int max = 255;</span>
+<span class="nc bnc" id="L336" title="All 2 branches missed.">		if (txtDescription.getText().length() &gt; max + 1) {</span>
+<span class="nc" id="L337">			String shortened = txtDescription.getText().substring(0, max);</span>
+<span class="nc" id="L338">			txtDescription.setText(shortened);</span>
+<span class="nc" id="L339">			e.consume();</span>
+<span class="nc bnc" id="L340" title="All 2 branches missed.">		} else if (txtDescription.getText().length() &gt; max) {</span>
+<span class="nc" id="L341">			e.consume();</span>
+		}
+
+<span class="nc" id="L344">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

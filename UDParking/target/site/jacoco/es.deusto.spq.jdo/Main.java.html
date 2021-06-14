@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Main.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">UDParking</a> &gt; <a href="index.source.html" class="el_package">es.deusto.spq.jdo</a> &gt; <span class="el_source">Main.java</span></div><h1>Main.java</h1><pre class="source lang-java linenums">/** \file 
+ * Breve descripción de es.deusto.spq.jdo Main.java. Jun 13, 2021
+ */
+package es.deusto.spq.jdo;
+
+import java.io.IOException;
+import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
+
+/**
+ * Main class.
+ *
+ */
+<span class="nc" id="L19">public class Main {</span>
+
+	// Base URI the Grizzly HTTP server will listen on
+	public static final String BASE_URI = &quot;http://localhost:8080/myapp/&quot;;
+
+<span class="nc" id="L24">	public final static Logger logger = Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);</span>
+
+	/**
+	 * Starts Grizzly HTTP server exposing JAX-RS resources defined in this
+	 * application.
+	 * 
+	 * @return Grizzly HTTP server.
+	 */
+	public static HttpServer startServer() {
+		// create a resource config that scans for JAX-RS resources and providers
+		// in com.example package
+<span class="nc" id="L35">		final ResourceConfig rc = new ResourceConfig().packages(&quot;es.deusto.spq&quot;);</span>
+
+		// create and start a new instance of grizzly http server
+		// exposing the Jersey application at BASE_URI
+<span class="nc" id="L39">		return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);</span>
+	}
+
+	/**
+	 * Main method.
+	 * 
+	 * @param args
+	 * @throws IOException
+	 */
+	public static void main(String[] args) throws IOException {
+<span class="nc" id="L49">		final HttpServer server = startServer();</span>
+<span class="nc" id="L50">		logger.log(Level.INFO,</span>
+				&quot;UDParking app started with WADL available at &quot; + &quot;%sapplication.wadl\nHit enter to stop it...&quot;, BASE_URI);
+<span class="nc" id="L52">		System.in.read();</span>
+<span class="nc" id="L53">		server.shutdownNow();</span>
+<span class="nc" id="L54">	}</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

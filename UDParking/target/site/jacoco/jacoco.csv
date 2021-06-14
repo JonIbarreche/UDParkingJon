@@ -1,0 +1,16 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+UDParking,es.deusto.spq.util,PreparedData,142,0,2,0,36,0,6,0,5,0
+UDParking,es.deusto.spq.gui,MainWindow.new ActionListener() {...},20,0,0,0,3,0,2,0,2,0
+UDParking,es.deusto.spq.gui,MainWindow.new ActionListener() {...},20,0,0,0,3,0,2,0,2,0
+UDParking,es.deusto.spq.gui,MainWindow,612,0,20,0,126,0,16,0,6,0
+UDParking,es.deusto.spq.gui,MainWindow.new Runnable() {...},18,0,0,0,7,0,2,0,2,0
+UDParking,es.deusto.spq.gui,MainWindow.new MouseAdapter() {...},29,0,2,0,8,0,5,0,4,0
+UDParking,es.deusto.spq.gui,MainWindow.new GenericType() {...},6,0,0,0,1,0,1,0,1,0
+UDParking,es.deusto.spq.gui,MainWindow.new KeyListener() {...},18,0,0,0,5,0,4,0,4,0
+UDParking,es.deusto.spq.gui,MainWindow.new FocusAdapter() {...},35,0,4,0,8,0,5,0,3,0
+UDParking,es.deusto.spq.gui,MainWindow.new FocusAdapter() {...},35,0,4,0,8,0,5,0,3,0
+UDParking,es.deusto.spq.gui,MainWindow.new FocusAdapter() {...},35,0,4,0,8,0,5,0,3,0
+UDParking,es.deusto.spq.jdo,Main,36,0,0,0,9,0,4,0,4,0
+UDParking,es.deusto.spq.jdo,Vehiculo,664,118,106,5,9,17,96,18,36,18
+UDParking,es.deusto.spq.jdo,Parking,529,62,80,1,4,8,77,10,35,10
+UDParking,es.deusto.spq.resources,VehiculoResource,23,0,0,0,8,0,2,0,2,0
