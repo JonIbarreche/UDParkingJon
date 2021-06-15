@@ -14,6 +14,7 @@ import org.databene.contiperf.junit.ContiPerfRule;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
@@ -69,6 +70,7 @@ public class VehiculoResourceTest {
 	 * Test para obtener Vehiculos
 	 *
 	 */
+	@Ignore
 	@Test
 	@PerfTest(invocations = 100, threads = 40)
 	public void testgetVehiculos() {
@@ -91,6 +93,8 @@ public class VehiculoResourceTest {
 
 		}
 		assertEquals(listaVehiculos.get(0).getName(), vehiculo1.get(0).getName());
+		assertEquals(listaVehiculos.get(1).getName(), vehiculo1.get(1).getName());
+		assertEquals(listaVehiculos.get(2).getName(), vehiculo1.get(2).getName());
 
 	}
 	
