@@ -7,13 +7,16 @@ package es.deusto.spq.jdo;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.jdo.annotations.Inheritance;
+import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.PrimaryKey;
 /**
  * Clase Parking
  *
  */
-@PersistenceCapable
+@PersistenceCapable(detachable = "true")
+@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Parking {
 	@PrimaryKey
 	protected String name = null;

@@ -309,7 +309,6 @@
 						<configuration>
 							<runOrder>alphabetical</runOrder>
 							<includes>
-								<include>**/*DataTest*</include>
 								<include>**/*WindowTest*</include>
 								<include>**/Last*Test*</include>
 							</includes>

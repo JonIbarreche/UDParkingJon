@@ -47,10 +47,15 @@ public class Main {
 	 */
 	public static void main(String[] args) throws IOException {
 		final HttpServer server = startServer();
+		
 		logger.log(Level.INFO,
 				"UDParking app started with WADL available at " + "%sapplication.wadl\nHit enter to stop it...", BASE_URI);
-		System.in.read();
-		server.shutdownNow();
+		int a = System.in.read();
+		if (a == 13) {
+			server.shutdownNow();
+		}
+		//System.in.read();
+		
 	}
 
 

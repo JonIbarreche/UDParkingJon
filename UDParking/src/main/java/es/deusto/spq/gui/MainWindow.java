@@ -227,7 +227,7 @@ public class MainWindow extends JFrame {
 					@Override
 					public void focusLost(FocusEvent e) {
 						if (txtPrecio.getText().equals(""))
-							txtPrecio.setText("Director");
+							txtPrecio.setText("Precio");
 					}
 				});
 				txtPrecio.setBorder(null);

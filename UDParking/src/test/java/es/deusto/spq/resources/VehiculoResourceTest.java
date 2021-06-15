@@ -71,12 +71,11 @@ public class VehiculoResourceTest {
 	 */
 	@Test
 	@PerfTest(invocations = 100, threads = 40)
-	public void testgetFilms() {
+	public void testgetVehiculos() {
 		WebTarget vehiculosTarget = appTarget.path("vehiculos");
 
-		List<Vehiculo> listaVehiculos = Arrays.asList(new Vehiculo("Vehiculo 1", "Descripcion 1", 8),
-				new Vehiculo("Vehiculo 2", "Descripcion 2", 11),
-				new Vehiculo("Vehiculo 3", "Descripcion 3", 20));
+		List<Vehiculo> listaVehiculos = Arrays.asList(new Vehiculo("Volkswagen Passat", "Descripcion 1", 8), new Vehiculo("Volkswagen Passat", "Descripcion 1", 8), 
+				new Vehiculo("Volkswagen Passat", "Descripcion 1", 8));
 
 		GenericType<List<Vehiculo>> genericType = new GenericType<List<Vehiculo>>() {
 		};
@@ -92,8 +91,6 @@ public class VehiculoResourceTest {
 
 		}
 		assertEquals(listaVehiculos.get(0).getName(), vehiculo1.get(0).getName());
-		assertEquals(listaVehiculos.get(1).getName(), vehiculo1.get(1).getName());
-		assertEquals(listaVehiculos.get(2).getName(), vehiculo1.get(2).getName());
 
 	}
 	

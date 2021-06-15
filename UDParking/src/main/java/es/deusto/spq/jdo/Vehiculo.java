@@ -5,6 +5,8 @@ package es.deusto.spq.jdo;
 
 
 import javax.jdo.annotations.IdGeneratorStrategy;
+import javax.jdo.annotations.Inheritance;
+import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.jdo.annotations.PrimaryKey;
@@ -12,7 +14,8 @@ import javax.jdo.annotations.PrimaryKey;
  * Clase Vehiculo
  *
  */
-@PersistenceCapable
+@PersistenceCapable(detachable = "true")
+@Inheritance(strategy=InheritanceStrategy.NEW_TABLE)
 public class Vehiculo {
 	
 	@PrimaryKey
@@ -23,26 +26,18 @@ public class Vehiculo {
 
 	protected String description = null;
 
-	protected long price = 0;
+	protected int price = 0;
 	/**
 	 * Metodo para construir objeto Vehiculo con sus atributos correspondientes
 	 *
 	 */
-	public Vehiculo(String name, String description, long price) {
+	public Vehiculo(String name, String description, int price) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.price = price;
 	}
-	/**
-	 * Metodo para construir objeto Vehiculo (con int) con sus atributos correspondientes
-	 *
-	 */
-	public Vehiculo(String name2, String description2, int price2) {
-		this.name = name2;
-		this.description = description2;
-		this.price = price2;
-	}
+	
 	/**
 	 * Test para obtener el id del vehiculo
 	 *
@@ -96,7 +91,7 @@ public class Vehiculo {
 	 * Test para asignar el precio del vehiculo
 	 *
 	 */
-	public void setPrice(long price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	/**

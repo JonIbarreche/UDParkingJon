@@ -6,6 +6,7 @@ package es.deusto.spq.util;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.experimental.categories.Category;
 
@@ -50,9 +51,10 @@ public class PreparedDataTest {
 	}
 	
 	/**
-	 * Test para crear Peliculas
+	 * Test para crear Parking
 	 *
 	 */
+	@Ignore
 	@SuppressWarnings("static-access")
 	@Test
 	public void crearParkingTest() {
@@ -62,7 +64,7 @@ public class PreparedDataTest {
 		pd.pm.deletePersistent(pd.p2);
 		pd.pm.deletePersistent(pd.p3);
 		pd.pm.deletePersistent(pd.p4);
-
+		
 	}
 	
 }
