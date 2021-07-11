@@ -1,6 +1,9 @@
 # UDParkingJon
 UDParking
 
+## PASOS PARA EJECUTAR
+*WINDOWS*
+
 Crear una base de datos llamada parking y dar permisos al usuario por defecto
 
     DROP SCHEMA parking;
@@ -13,7 +16,9 @@ La configuración por defecto para la base de datos y los usuarios puede ser act
 ===================================================================================
 
 
-Creación de las tablas
+CREACION DE LAS TABLAS
+
+---
 
 Antes de crear las tablas es necesario ejecutar el Enchance del proyecto
 
@@ -23,13 +28,17 @@ Para la creación de las tablas se debe ejecutar el comando de maven
 
     mvn compile datanucleus:schema-create
 
-Datos de prueba
+DATOS DE PRUEBA
+
+---
 
 Se pueden introducir datos de prueba en la aplicación utilizando el comando de maven
 
     mvn exec::java -Pdatos
 
-Inicio del servidor
+INICIO DEL SERVIDOR
+
+---
 
 El servidor REST de la aplicación se lanza utilizando el comando
 
@@ -38,7 +47,9 @@ El servidor REST de la aplicación se lanza utilizando el comando
 Si el servidor ha sido iniciado correctamente se pueden obtener los datos de prueba accediendo con el navegador a la URL http://localhost:8080/myapp/vehiculos.
 
 
-Inicio de la aplicación cliente
+INICIO DE LA APLICACION CLIENTE
+
+---
 
 La aplicación cliente puede iniciarse usando el comando
 
@@ -46,7 +57,7 @@ La aplicación cliente puede iniciarse usando el comando
   
 ==================================================================================
 
-Tests
+## TESTS
 
 Para comprobar los teses unitarios
 
@@ -66,10 +77,15 @@ Para comprobar los todos los teses
     
 ===================================================================================
 
-Documentación
+DOCUMENTACIÓN
 
 Para generar la documentación mediante Doxyfile
     
     mvn doxygen:report
     
- -------------------------------------------------------------------------------   
+ ---
+
+## Contributors
+
+- Jon Ibarreche <jon.ibarreche@opendeusto.es>
+---
