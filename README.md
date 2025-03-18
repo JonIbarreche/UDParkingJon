@@ -1,27 +1,27 @@
-# GestorParking: Sistema de Gestión de Estacionamientos
+# ParkingManager: Professional Parking Management System
 
-GestorParking es una aplicación Java para la gestión de vehículos y estacionamientos que permite administrar tickets de aparcamiento. Desarrollada utilizando tecnologías JDO (Java Data Objects) y una arquitectura cliente-servidor REST.
+ParkingManager is a Java application for vehicle and parking management that allows efficient administration of parking tickets. Developed using JDO (Java Data Objects) technologies and a REST client-server architecture.
 
-## Características
+## Features
 
-- ✅ Gestión de vehículos con información detallada
-- ✅ Administración de estacionamientos 
-- ✅ Interfaz gráfica intuitiva para el usuario
-- ✅ Base de datos MySQL para almacenamiento persistente
-- ✅ API REST para comunicación cliente-servidor
-- ✅ Documentación completa con Doxygen
+- ✅ Detailed vehicle information management
+- ✅ Comprehensive parking space administration
+- ✅ Intuitive graphical user interface
+- ✅ MySQL database for persistent storage
+- ✅ REST API for client-server communication
+- ✅ Complete documentation with Doxygen
 
-## Requisitos previos
+## Prerequisites
 
-- Java 7 o superior
+- Java 7 or higher
 - Maven 3.x
 - MySQL Server
 
-## Instalación y configuración
+## Installation and Configuration
 
-### Configuración de la base de datos
+### Database Setup
 
-Cree una base de datos MySQL llamada `parking` y otorgue permisos al usuario por defecto:
+Create a MySQL database called `parking` and grant permissions to the default user:
 
 ```sql
 DROP SCHEMA IF EXISTS parking;
@@ -30,92 +30,92 @@ CREATE USER IF NOT EXISTS 'spq'@'localhost' IDENTIFIED BY 'spq';
 GRANT ALL ON parking.* TO 'spq'@'localhost';
 ```
 
-> **Nota**: La configuración por defecto para la base de datos puede ser modificada en el archivo `resources/datanucleus.properties`.
+> **Note**: Default database configuration can be modified in the `resources/datanucleus.properties` file.
 
-### Preparación del esquema de base de datos
+### Database Schema Preparation
 
-Antes de crear las tablas, es necesario ejecutar el enhance del proyecto:
+Before creating the tables, it's necessary to enhance the project:
 
 ```bash
 mvn datanucleus:enhance
 ```
 
-Para la creación de las tablas, ejecute:
+To create the tables, execute:
 
 ```bash
 mvn compile datanucleus:schema-create
 ```
 
-### Datos de prueba
+### Test Data
 
-Para cargar datos de prueba en la aplicación:
+To load test data into the application:
 
 ```bash
 mvn exec:java -Pdatos
 ```
 
-## Ejecución
+## Execution
 
-### Iniciar el servidor
+### Starting the Server
 
-El servidor REST se inicia con el comando:
+The REST server is started with the command:
 
 ```bash
 mvn exec:java
 ```
 
-Si el servidor arranca correctamente, puede verificarlo accediendo a:
+If the server starts correctly, you can verify it by accessing:
 http://localhost:8080/myapp/vehiculos
 
-### Iniciar la aplicación cliente
+### Starting the Client Application
 
-La aplicación cliente se inicia con:
+The client application is started with:
 
 ```bash
 mvn exec:java -Pcliente
 ```
 
-## Pruebas
+## Testing
 
-GestorParking incluye diferentes tipos de pruebas para garantizar la calidad del software:
+ParkingManager includes different types of tests to ensure software quality:
 
-| Tipo de prueba | Comando |
+| Test Type | Command |
 |----------------|---------|
-| Pruebas unitarias | `mvn -Punit test` |
-| Pruebas de integración | `mvn -Pperf verify` |
-| Pruebas de interfaz gráfica | `mvn -Pgui verify` |
-| Todas las pruebas | `mvn -Pfull test` |
+| Unit tests | `mvn -Punit test` |
+| Integration tests | `mvn -Pperf verify` |
+| GUI tests | `mvn -Pgui verify` |
+| All tests | `mvn -Pfull test` |
 
-## Documentación
+## Documentation
 
-Para generar la documentación mediante Doxygen:
+To generate documentation using Doxygen:
 
 ```bash
 mvn doxygen:report
 ```
 
-La documentación generada estará disponible en la carpeta `target/site/doxygen`.
+The generated documentation will be available in the `target/site/doxygen` folder.
 
-## Estructura del proyecto
+## Project Structure
 
 ```
-UDParking/
+ParkingManager/
 ├── src/
 │   ├── main/
 │   │   ├── java/es/deusto/spq/
-│   │   │   ├── gui/         # Interfaces gráficas
-│   │   │   ├── jdo/         # Objetos de datos (entidades)
-│   │   │   ├── resources/   # Recursos REST
-│   │   │   └── util/        # Utilidades
-│   │   └── resources/       # Archivos de configuración
-│   └── test/                # Pruebas
-└── docs/                    # Documentación adicional
+│   │   │   ├── gui/         # Graphical interfaces
+│   │   │   ├── jdo/         # Data objects (entities)
+│   │   │   ├── resources/   # REST resources
+│   │   │   └── util/        # Utilities
+│   │   └── resources/       # Configuration files
+│   └── test/                # Tests
+└── docs/                    # Additional documentation
 ```
 
-## Contribuidores
+## Contributors
 
 - Jon Ibarreche <jon.ibarreche@opendeusto.es>
 
-## Licencia
+## License
 
-Copyright © 2021-2023 Universidad de Deusto
+Copyright © 2021-2023 University of Deusto
