@@ -118,4 +118,4 @@ ParkingManager/
 
 ## License
 
-Copyright © 2021-2023 University of Deusto
+Copyright © 2021 Jon Ibarreche - All rights reserved
