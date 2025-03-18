@@ -1,91 +1,121 @@
-# UDParkingJon
-UDParking
+# GestorParking: Sistema de Gestión de Estacionamientos
 
-## PASOS PARA EJECUTAR
-*WINDOWS*
+GestorParking es una aplicación Java para la gestión de vehículos y estacionamientos que permite administrar tickets de aparcamiento. Desarrollada utilizando tecnologías JDO (Java Data Objects) y una arquitectura cliente-servidor REST.
 
-Crear una base de datos llamada parking y dar permisos al usuario por defecto
+## Características
 
-    DROP SCHEMA parking;
-    CREATE DATABASE parking;
-    CREATE USER IF NOT EXISTS 'spq'@'localhost' IDENTIFIED BY 'spq';
-    GRANT ALL ON parking.* TO 'spq'@'localhost';
+- ✅ Gestión de vehículos con información detallada
+- ✅ Administración de estacionamientos 
+- ✅ Interfaz gráfica intuitiva para el usuario
+- ✅ Base de datos MySQL para almacenamiento persistente
+- ✅ API REST para comunicación cliente-servidor
+- ✅ Documentación completa con Doxygen
 
-La configuración por defecto para la base de datos y los usuarios puede ser actualizada en el fichero resources/datanucleus.properties.
+## Requisitos previos
 
-===================================================================================
+- Java 7 o superior
+- Maven 3.x
+- MySQL Server
 
+## Instalación y configuración
 
-CREACION DE LAS TABLAS
+### Configuración de la base de datos
 
----
+Cree una base de datos MySQL llamada `parking` y otorgue permisos al usuario por defecto:
 
-Antes de crear las tablas es necesario ejecutar el Enchance del proyecto
+```sql
+DROP SCHEMA IF EXISTS parking;
+CREATE DATABASE parking;
+CREATE USER IF NOT EXISTS 'spq'@'localhost' IDENTIFIED BY 'spq';
+GRANT ALL ON parking.* TO 'spq'@'localhost';
+```
 
-    mvn datanucleus:enhance
+> **Nota**: La configuración por defecto para la base de datos puede ser modificada en el archivo `resources/datanucleus.properties`.
 
-Para la creación de las tablas se debe ejecutar el comando de maven
+### Preparación del esquema de base de datos
 
-    mvn compile datanucleus:schema-create
+Antes de crear las tablas, es necesario ejecutar el enhance del proyecto:
 
-DATOS DE PRUEBA
+```bash
+mvn datanucleus:enhance
+```
 
----
+Para la creación de las tablas, ejecute:
 
-Se pueden introducir datos de prueba en la aplicación utilizando el comando de maven
+```bash
+mvn compile datanucleus:schema-create
+```
 
-    mvn exec::java -Pdatos
+### Datos de prueba
 
-INICIO DEL SERVIDOR
+Para cargar datos de prueba en la aplicación:
 
----
+```bash
+mvn exec:java -Pdatos
+```
 
-El servidor REST de la aplicación se lanza utilizando el comando
+## Ejecución
 
-    mvn exec::java
+### Iniciar el servidor
 
-Si el servidor ha sido iniciado correctamente se pueden obtener los datos de prueba accediendo con el navegador a la URL http://localhost:8080/myapp/vehiculos.
+El servidor REST se inicia con el comando:
 
+```bash
+mvn exec:java
+```
 
-INICIO DE LA APLICACION CLIENTE
+Si el servidor arranca correctamente, puede verificarlo accediendo a:
+http://localhost:8080/myapp/vehiculos
 
----
+### Iniciar la aplicación cliente
 
-La aplicación cliente puede iniciarse usando el comando
+La aplicación cliente se inicia con:
 
-    mvn exec::java -Pcliente
-  
-==================================================================================
+```bash
+mvn exec:java -Pcliente
+```
 
-## TESTS
+## Pruebas
 
-Para comprobar los teses unitarios
+GestorParking incluye diferentes tipos de pruebas para garantizar la calidad del software:
 
-    mvn -Punit test
-    
-Para comprobar los teses de integracion
+| Tipo de prueba | Comando |
+|----------------|---------|
+| Pruebas unitarias | `mvn -Punit test` |
+| Pruebas de integración | `mvn -Pperf verify` |
+| Pruebas de interfaz gráfica | `mvn -Pgui verify` |
+| Todas las pruebas | `mvn -Pfull test` |
 
-    mvn -Pperf verify
-    
-Para comprobar los teses de la ventana
+## Documentación
 
-    mvn -Pgui verify
-    
-Para comprobar los todos los teses
+Para generar la documentación mediante Doxygen:
 
-    mvn -Pfull test
-    
-===================================================================================
+```bash
+mvn doxygen:report
+```
 
-DOCUMENTACIÓN
+La documentación generada estará disponible en la carpeta `target/site/doxygen`.
 
-Para generar la documentación mediante Doxyfile
-    
-    mvn doxygen:report
-    
- ---
+## Estructura del proyecto
 
-## Contributors
+```
+UDParking/
+├── src/
+│   ├── main/
+│   │   ├── java/es/deusto/spq/
+│   │   │   ├── gui/         # Interfaces gráficas
+│   │   │   ├── jdo/         # Objetos de datos (entidades)
+│   │   │   ├── resources/   # Recursos REST
+│   │   │   └── util/        # Utilidades
+│   │   └── resources/       # Archivos de configuración
+│   └── test/                # Pruebas
+└── docs/                    # Documentación adicional
+```
+
+## Contribuidores
 
 - Jon Ibarreche <jon.ibarreche@opendeusto.es>
----
+
+## Licencia
+
+Copyright © 2021-2023 Universidad de Deusto
